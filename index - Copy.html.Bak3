@@ -90,6 +90,15 @@
                             <li>C++</li>
                             <li>Unity</li>
                         </ul>
+
+                        <!--<div class="work__links">
+                            <a href="https://sloz.itch.io/boop-it" target="_blank" class="link__text">
+                            The Game <span>&rarr;</span>
+                            </a>
+                            <a href="https://github.com/RyanHewitt/DapperSunsRepository" title="View Source Code" target="_blank">
+                            <img src="./images/github.svg" class="work__code" alt="GitHub">
+                            </a>
+                        </div>-->
                         <br>
                         <hr size="5" width="85%" align="left" color="##000000">
                         <br>
@@ -159,9 +168,6 @@
                             </div>
                         </div>
                     </div>
-                    <a href="https://docs.google.com/document/d/1w1SCUfLlyJ9JW32GpI0cBy96w_axuBWS/edit?usp=sharing&ouid=110034162623704507211&rtpof=true&sd=true">
-                        <button>Resume</button>
-                      </a>   
                 </div>
             </section>    
                     <!-- <img class="mobileShow" class="img-fluid" src="assets/img/profile.png" style="display: none;"> -->
