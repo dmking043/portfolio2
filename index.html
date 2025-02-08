@@ -33,63 +33,70 @@
             margin-right: 50px; /* Indentation for the links */
         }
         
-            p.small {
-              line-height: 1.7;
+        p.small {
+            line-height: 1.7;
             }
 
-            .video-container {
-        position: relative;
-        display: inline-block;
-        cursor: pointer;
-        width: 560px;
-        height: 315px;
-    }
+        .header {
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.0;
+        }
+
+
+        .video-container {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            width: 560px;
+            height: 315px;
+        }
     
-    .video-container img {
-        width: 100%;
-        height: 100%;
-        display: block;
-        border-radius: 8px;
-    }
+        .video-container img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border-radius: 8px;
+        }
 
-    .play-overlay {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        background: rgba(0, 0, 0, 0.6);
-        transition: background 0.3s ease, transform 0.2s ease-in-out;
-    }
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.6);
+            transition: background 0.3s ease, transform 0.2s ease-in-out;
+        }
 
-    .play-overlay svg {
-        width: 80px;
-        height: 80px;
-    }
+        .play-overlay svg {
+            width: 80px;
+            height: 80px;
+        }
 
-    .video-container:hover .play-overlay {
-        background: rgba(0, 0, 0, 0.8);
-        transform: translate(-50%, -50%) scale(1.1);
-    }
+        .video-container:hover .play-overlay {
+            background: rgba(0, 0, 0, 0.8);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
 
-    .video-container iframe {
-        width: 100%;
-        height: 100%;
-        border: none;
-        border-radius: 8px;
-    }   
-    </style>    
-        <style>
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 8px;
+        }
+  
         .my-table {
             width: 75%;
-        }       
-        </style>
-     
+        }
+    </style>  
+            
+            
      </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -121,12 +128,12 @@
                         <!-- <span class="text-primary">King</span>
                     </h1> -->
                     <div class="subheading mb-5">
-                        Winter Park, Florida · (713) 876-1158 ·
+                        Winter Park, Florida · <a href="tel:713-876-1158">(713) 876-1158</a> ·
                             <a href="mailto:edking143@gmail.com">edking143@gmail.com</a>
                           </a>
                     </div>
                     <h2 class="mb-5">About</h2>
-                    <p>I am a student of Full Sail University working towards a degree in Game Development. During my studies, I honed my skills in programming languages and tools such as C++ and gained hands-on experience with game engines such as Unity and Unreal Engine 5 as well as Blueprints.</p>
+                    <p>I am a student of Full Sail University working towards a degree in Game Development, Expected Graduation February 2025. During my studies, I honed my skills in Visual Studio as well as programming languages and tools, such as; C# and C++. I gained hands-on experience with game engines such as Unity, Unreal Engine 5 and Blueprints.</p>
                     <br>
                     <br>
                     <div class="social-icons">
@@ -143,87 +150,87 @@
                 <div class="resume-section-content">
                     <h2 class="mb-5">My Work</h2>
             
-                    <div class="work__box">
-                        <div class="work__text">
-                            <h3>First-person Rhythm Platformer Game</h3>
-                        </div>
+                <div class="work__box">
+                    <div class="work__text">
+                    <h3>First-person Rhythm Platformer Game</h3>
+                </div>
             
-                        <div class="video-container" id="videoWrapper" onclick="loadVideo()">
+                <div class="video-container" id="videoWrapper" onclick="loadVideo()">
+                    <img id="videoThumbnail" src="assets/img/project-1.png" alt="Click to play">
+                    <div class="play-overlay">
+                    <svg width="80" height="80" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="48" stroke="white" stroke-width="4" fill="rgba(0, 0, 0, 0.6)" />
+                    <polygon points="35,25 75,50 35,75" fill="white"/>
+                    </svg>
+                    </div>
+                </div>
+            
+                <script>
+                    let player;
+                    let youtubeAPIReady = false;
+            
+                    function loadYouTubeAPI() {
+                        if (!youtubeAPIReady) {
+                            let tag = document.createElement("script");
+                            tag.src = "https://www.youtube.com/iframe_api";
+                            document.body.appendChild(tag);
+                            youtubeAPIReady = true;
+                            }
+                        }
+            
+                // Ensure API is loaded before trying to create the video player
+                    function onYouTubeIframeAPIReady() {
+                        youtubeAPIReady = true;
+                        }
+            
+                        function loadVideo() {
+                        const videoContainer = document.getElementById("videoWrapper");
+            
+                // Remove play button and replace with player container
+                        videoContainer.innerHTML = `<div id="player"></div>`;
+            
+                // Load YouTube API if not already loaded
+                        loadYouTubeAPI();
+            
+                // Ensure YouTube API is ready before creating the player
+                        let checkAPIInterval = setInterval(() => {
+                            if (youtubeAPIReady && window.YT && YT.Player) {
+                                clearInterval(checkAPIInterval);
+                                player = new YT.Player("player", {
+                                height: "315",
+                                width: "560",
+                                videoId: "C40TUgm7eJA",
+                                playerVars: { autoplay: 1, rel: 0 },
+                                events: {
+                                "onReady": function(event) {
+                                event.target.unMute();
+                                },
+                                "onStateChange": onPlayerStateChange
+                                }
+                                    });
+                                }
+                            }, 100); // Check every 100ms until API is ready
+                        }
+            
+                        function onPlayerStateChange(event) {
+                            if (event.data === YT.PlayerState.ENDED) {
+                                resetToThumbnail();
+                            }
+                        }
+            
+                        function resetToThumbnail() {
+                        const videoContainer = document.getElementById("videoWrapper");
+                        videoContainer.innerHTML = `
                             <img id="videoThumbnail" src="assets/img/project-1.png" alt="Click to play">
                             <div class="play-overlay">
                                 <svg width="80" height="80" viewBox="0 0 100 100">
-                                    <circle cx="50" cy="50" r="48" stroke="white" stroke-width="4" fill="rgba(0, 0, 0, 0.6)" />
-                                    <polygon points="35,25 75,50 35,75" fill="white"/>
-                                </svg>
-                            </div>
-                        </div>
-            
-                        <script>
-                            let player;
-                            let youtubeAPIReady = false;
-            
-                            function loadYouTubeAPI() {
-                                if (!youtubeAPIReady) {
-                                    let tag = document.createElement("script");
-                                    tag.src = "https://www.youtube.com/iframe_api";
-                                    document.body.appendChild(tag);
-                                    youtubeAPIReady = true;
-                                }
-                            }
-            
-                            // Ensure API is loaded before trying to create the video player
-                            function onYouTubeIframeAPIReady() {
-                                youtubeAPIReady = true;
-                            }
-            
-                            function loadVideo() {
-                                const videoContainer = document.getElementById("videoWrapper");
-            
-                                // Remove play button and replace with player container
-                                videoContainer.innerHTML = `<div id="player"></div>`;
-            
-                                // Load YouTube API if not already loaded
-                                loadYouTubeAPI();
-            
-                                // Ensure YouTube API is ready before creating the player
-                                let checkAPIInterval = setInterval(() => {
-                                    if (youtubeAPIReady && window.YT && YT.Player) {
-                                        clearInterval(checkAPIInterval);
-                                        player = new YT.Player("player", {
-                                            height: "315",
-                                            width: "560",
-                                            videoId: "C40TUgm7eJA",
-                                            playerVars: { autoplay: 1, rel: 0 },
-                                            events: {
-                                                "onReady": function(event) {
-                                                    event.target.unMute();
-                                                },
-                                                "onStateChange": onPlayerStateChange
-                                            }
-                                        });
-                                    }
-                                }, 100); // Check every 100ms until API is ready
-                            }
-            
-                            function onPlayerStateChange(event) {
-                                if (event.data === YT.PlayerState.ENDED) {
-                                    resetToThumbnail();
-                                }
-                            }
-            
-                            function resetToThumbnail() {
-                                const videoContainer = document.getElementById("videoWrapper");
-                                videoContainer.innerHTML = `
-                                    <img id="videoThumbnail" src="assets/img/project-1.png" alt="Click to play">
-                                    <div class="play-overlay">
-                                        <svg width="80" height="80" viewBox="0 0 100 100">
-                                            <circle cx="50" cy="50" r="48" stroke="white" stroke-width="4" fill="rgba(0, 0, 0, 0.6)" />
-                                            <polygon points="35,25 75,50 35,75" fill="white"/>
-                                        </svg>
-                                    </div>`;
-                                videoContainer.onclick = loadVideo;
-                            }
-                        </script>
+                                <circle cx="50" cy="50" r="48" stroke="white" stroke-width="4" fill="rgba(0, 0, 0, 0.6)" />
+                                <polygon points="35,25 75,50 35,75" fill="white"/>
+                            </svg>
+                        </div>`;
+                        videoContainer.onclick = loadVideo;
+                        }
+                    </script>
             
                         <br>
                         <p>
@@ -240,12 +247,6 @@
                     </div>
                 </div>
             </section>
-                     <!-- <div class="work__image-box">
-                            <img class="img-fluid" src="./assets/img/project-1800x600.png" class="work__image" alt="Project 1" /> -->
-                            <!--<iframe width="420" height="315"
-                                    src="https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1&mute=1">
-                            </iframe>-->
-
             <hr class="m-0" /> 
             <!-- Education-->
             <section class="resume-section" id="education">
@@ -253,13 +254,10 @@
                     <h2 class="mb-5">Education</h2>
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
-                            <h3 class="mb-0">Full Sail University, Winter Park, Florida</h3>
-                            <div class="subheading mb-3">Bachelor of Game Development</div>
-                            <div>Artifical Intelligence  -  Engine Development  - Data Structure and Algorithms</div>
-                            <!-- <p>GPA: 3.23</p> -->
+                            <div class="mb-0"><img src="./assets/img/FullSailLogo.png"></div>
+                            <div class="subheading mb-1">Bachelor of Science Game Development&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; July 2022 - February 2025</div>
+                            <div><strong>Engine Development - Data Structure and Algorithms - Artifical Intelligence</strong> </div>
                         </div>
-                        <div class="flex-shrink-0"><span class="text-primary"><h4>July 2022 - February 2025</h4></span></div>
-                    </div>
                 </div>
             </section>
             <hr class="m-0" />    
@@ -275,7 +273,7 @@
                             <div class="d-flex flex-column align-items-center">
                                 <div class="icon-contact mb-3"><i class="fas fa-mobile-alt"></i></div>
                                 <div class="text-muted">Phone</div>
-                                <div class="lead font-weight-bold"><h4>(713) 876-1158</h4></div>
+                                <div class="lead font-weight-bold"><a href="tel:713-876-1158">(713) 876-1158</div>
                             </div>
                         </div>
                         <div class="col-lg-4">
@@ -283,8 +281,6 @@
                                 <div class="icon-contact mb-3"><i class="far fa-envelope"></i></div>
                                 <div class="text-muted">Email</div><a class="lead font-weight-bold" href="mailto:edking143@gmail.com">edking143@gmail.com</a>
                             </div>
-                        </div>
-                    </div>
                 </div>
             </section>
             <hr class="m-0" />
@@ -295,59 +291,72 @@
                     <br>
                     <div>
                         <h4>Resume Download Options:</h4>
-                        <a href="https://dmking043.github.io/portfolio2/assets/pdf-files/EvanKingResume.pdf" download>Download as PDF</a><br>
-                        <a href="https://dmking043.github.io/portfolio2/assets/docx/EvanKingResume.docx" download>Download as DOCX</a>
+                        <a href="https://kingdomempire.github.io/assets/pdf-files/EvanKingResume.pdf" download>Download as PDF</a><br>
+                        <a href="https://kingdomempire.github.io/assets/docx-files/EvanKingResume.docx" download>Download as DOCX</a>
                     </div>
                     <br>
-                        <hr size="5" width="85%" align="left" color="##000000">  
-                    <p class="small">   
-                        <h3>Evan D. King</h3>
-                        <h4>Game Developer</h4>
-                        </p>
-                        
-                        <p class="small">
-                        Email: edking143@gmail.com<br>
-                        Mobile: (713) 875-1158<br>
-                        <strong>Portfolio: </strong><a href="https://kingdomempire.github.io/"><u>kingdomempire.github.io</u></a><br>
-                        <strong>in: </strong><a href="https://www.linkedin.com/in/evanking139/"><u>linkedin/in/evanking143</u></a></p>
+                        <hr size="5" width="85%" align="left" color="##000000"> 
+                <!-- Resume Header-->        
+                <header class="header">
+                            <p><a><strong>Evan D. King</strong></a>
+                                <p><a><strong>Mobile:</strong> <a href="tel:713-876-1158">(713) 876-1158</a> &nbsp;&nbsp;&nbsp;<strong>Email: </strong><a href="mailto:edking143@gmail.com">edking143@gmail.com</a></p>                         
+                                <p><a><strong>Portfolio:</strong> <a href="https://kingdomempire.github.io"><u>kingdomempire.github.io</u></a><strong>&nbsp;&nbsp;&nbsp; LinkedIn: </strong> <a href="https://www.linkedin.com/in/evanking143/">linkedin/in/evanking143</a></p>
+                </header> 
                         <h3><strong>SUMMARY</strong></h3>
                     <div class="box">
-                            Recent Game Developer graduate with a passion for game development and a solid foundation in programming, algorithms, and software engineering principles. Proficient in C++, C#, Unity and Unreal Engine, with hands-on experience in designing and implementing game mechanics, developing interactive environments. Eager to apply creative problem-solving skills and technical expertise to contribute to innovative game projects. Strong collaborative skills, demonstrated through successful team projects and a commitment to continuous learning and professional growth in the gaming industry.
+                            <ul>
+                                <ul>Game Development graduate with expertise in programming, software engineering, and QA. Skilled in crafting immersive mechanics and interactive worlds through hands-on projects. Passionate about innovation and collaboration, with a commitment to staying ahead of industry trends. Eager to bring fresh ideas and technical skills to cutting-edge game development.</ul>
+                            </ul>
                     </div>
                         <p class="small"></p>
-                        <h3><strong>SOFTWARE</strong></h3>
+                        <h3><strong>Skills & software</strong></h3>
                     <div class="box">
-                        Programming Languages: C++, C#, Unreal Engine 5 Blueprints<br>
-                        Software: Visual Studio 2022, Unity, Unreal Engine 5<br>
+                        <ul>
+                            <ul><li><strong>Languages:</strong> C++, C#.</li></ul>
+                            <ul><li><strong>Game Engines:</strong> Unreal Engine 5, Unity and Unreal Engine 5 Blueprints.</li></ul>
+                            <ul><li><strong>Development Tools:</strong> Visual Studio 2022, GitHub.</li></ul>
+                            <ul><li><strong>Game Development:</strong> AI programming, game architecture, UI design, procedural generation.</li></ul> 
+                            <ul><li><strong>Soft Skills:</strong> Team collaboration, problem-solving, Verbal and written Communication.</li></ul>
+                        </ul>                              
                     </div>
                     <p class="small"></p>
-                        <h3><strong>TECHNICAL SKILLS</strong></h3>
+                        <h3><strong>Projects & Development Experience</strong></h3>
                     <div class="box">
-                            Hands-on programming skills to excel in the world of game development utilizing; C++, C#, Java and Artificial Intelligence used in the game development cycle from preproduction to finished product, including; Computer Graphics, Computer Architecture, AI and Software Engineering, Digital Logic, Game Architecture and GitHub for version control and team collaboration. Developed techniques for designing and creating intelligent and lifelike behaviors in characters in order to provide realism and computer opponents that continue to challenge players even after repeated game play.
+                            <ul>
+                                <ul><li><strong>Enemy AI Development:</strong> Designed two enemy and bosses using C++ with complex AI behaviors.</li></ul>
+                                <ul><li><strong>Random Dungeon Generator:</strong> Built blueprint-based dungeon generator in Unreal Engine 5, creating randomized environments and adaptive challenges to player progression.</li></ul>
+                                <ul><li><strong>In-Game UI Components:</strong> Designed intuitive UI elements to enhance player interaction.</li></ul>
+                                <ul><li><strong>Pickup/Interact System:</strong> Developed a C++ system in Unreal Engine for item interaction using Traces/RayCasts or picking up items and interacting with Interactables.</li></ul>
+                            </ul>
                         </div>
                         <p class="small"></p>
-                        <h3><strong>PROJECTS and DEVELOPMENT EXPERIENCE</strong></h3>
+                        <h3><strong>Experience</strong></h3>
                     <div class="box">
-                            Develop, and produce from start to finish a 3D game. Enemy Creation: Created 2 unique enemies and 2 Boss enemies using C++, that had behaviors that challenged players strategies and added depth to game play. Random Dungeon Generator: Developed a blueprint-based dungeon generator in Unreal Engine 5, adding randomized challenges and environments that adapted to player exploration and progress.
+                        <ul>
+                            <ul><strong>Quality Assurance – Full Sail University UX Lab</strong> - January 2023 - February 2024</li>
+                            <ul style="padding-left: 30px;">
+                                <li>Conducted Quality Assurance testing for indie and major studio game releases, identifying bugs and design inconsistencies.</li>
+                                <li>Provided feedback on gameplay, UI, and player experience to refine mechanics and usability.</li>
+                                <li>Collaborated with developers to enhance game quality based on user behavior and testing insights.</li>
+                            </ul>
+                        </ul>
                     </div>  
-                        <p class="small"></p>
-                        <h3><strong>ADDITIONAL SKILLS</strong></h3>
-                        <div class="box">
-                            Excellent communication and interpersonal skills, ability to work within a group or on my own, Strong knowledge of game development tools, languages, and frameworks. Experienced in creating and delivering high quality game designs.
-                        </div>
                         <p class="small"></p>
                         <h3><strong>Leadership</strong></h3>
                     <div class="box">
-                         Eagle Scout - May 5, 2022<br>
-                         Completed Eagle Scout program, demonstrating time management, leadership, teamwork and problem-solving skills.<br>
-                         Boy Scouts of America Troop 727, Kingwood, TXL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2014 - 2022
+                       <ul>
+                        <ul><strong>Eagle Scout</strong> - May 5, 2022</strong></ul>
+                         <ul>Demonstrated leadership, time management, and problem-solving skills.</ul>
+                       </ul>  
                     </div>
                         <p class="small"></p>
-                        <h3><strong>EDUCATION</strong></h3>
+                        <h3><strong>Education</strong></h3>
                     <div class="box">
-                         Full Sail University, Winter Park, FL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2022 - 2025<br>
-                         Bachelor of Game Development<br>
-                         99% Attendance
+                        <ul>
+                            <ul><strong>Full Sail University</strong>, Winter Park, FL - February 2025</ul>
+                            <ul>Bachelor of Science in Game Development</ul>
+                            <ul>99% Attendance</ul>
+                        </ul>
                     </div>     
         </div>
         </section>
