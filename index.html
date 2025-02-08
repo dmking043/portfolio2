@@ -162,7 +162,6 @@
                             let player;
                             let youtubeAPIReady = false;
             
-                            // Load YouTube API once
                             function loadYouTubeAPI() {
                                 if (!youtubeAPIReady) {
                                     let tag = document.createElement("script");
@@ -172,28 +171,38 @@
                                 }
                             }
             
-                            window.onYouTubeIframeAPIReady = function() {
+                            // Ensure API is loaded before trying to create the video player
+                            function onYouTubeIframeAPIReady() {
                                 youtubeAPIReady = true;
-                            };
+                            }
             
                             function loadVideo() {
                                 const videoContainer = document.getElementById("videoWrapper");
+            
+                                // Remove play button and replace with player container
                                 videoContainer.innerHTML = `<div id="player"></div>`;
             
+                                // Load YouTube API if not already loaded
                                 loadYouTubeAPI();
             
-                                player = new YT.Player("player", {
-                                    height: "315",
-                                    width: "560",
-                                    videoId: "C40TUgm7eJA",
-                                    playerVars: { autoplay: 1, rel: 0 },
-                                    events: {
-                                        "onReady": function(event) {
-                                            event.target.unMute();
-                                        },
-                                        "onStateChange": onPlayerStateChange
+                                // Ensure YouTube API is ready before creating the player
+                                let checkAPIInterval = setInterval(() => {
+                                    if (youtubeAPIReady && window.YT && YT.Player) {
+                                        clearInterval(checkAPIInterval);
+                                        player = new YT.Player("player", {
+                                            height: "315",
+                                            width: "560",
+                                            videoId: "C40TUgm7eJA",
+                                            playerVars: { autoplay: 1, rel: 0 },
+                                            events: {
+                                                "onReady": function(event) {
+                                                    event.target.unMute();
+                                                },
+                                                "onStateChange": onPlayerStateChange
+                                            }
+                                        });
                                     }
-                                });
+                                }, 100); // Check every 100ms until API is ready
                             }
             
                             function onPlayerStateChange(event) {
@@ -230,7 +239,6 @@
                         </ul>
                     </div>
                 </div>
-            </section>
             </section>
                      <!-- <div class="work__image-box">
                             <img class="img-fluid" src="./assets/img/project-1800x600.png" class="work__image" alt="Project 1" /> -->
