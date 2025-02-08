@@ -35,14 +35,46 @@
             p.small {
               line-height: 1.7;
             }
+
+            .video-container {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        width: 560px; /* Adjust width as needed */
+        height: 315px; /* Adjust height as needed */
+    }
+    
+    .video-container img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        border-radius: 8px;
+    }
+
+    .play-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        font-size: 50px;
+        padding: 20px 30px;
+        border-radius: 50%;
+        text-align: center;
+        pointer-events: none;
+    }
+
+    .video-container:hover .play-button {
+        background: rgba(0, 0, 0, 0.8);
+    }    
         </style>    
         <style>
-                .my-table {
-                  width: 75%;
-                }
+        .my-table {
+            width: 75%;
+        }       
         </style>
-            
-            
+     
      </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -95,13 +127,64 @@
             <section class="resume-section" id="work">
                 <div class="resume-section-content">
                     <h2 class="mb-5">My Work</h2>
-
+            
                     <div class="work__box">
                         <div class="work__text">
-                        <h3>FirstGame</h3>
+                            <h3>FirstGame</h3>
+                        </div>
+                        
+                        <div class="video-container" onclick="loadVideo(this)">
+                            <img src="assets/img/project-1.png" alt="Click to play">
+                            <div class="play-button">&#9658;</div>
+                        </div>
+            
+                        <script>
+                            function loadVideo(element) {
+                                element.innerHTML = `
+                                    <iframe width="100%" height="100%" 
+                                        src="https://www.youtube.com/embed/C40TUgm7eJA?autoplay=1&mute=1&rel=0" 
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen>
+                                    </iframe>`;
+                            }
+                        </script>
+            
+                        <br>
+                        <p>
+                            Boop-It is a first-person rhythm platformer where the player speeds through levels by platforming to the beat with their Boop Gun.
+                        </p>  
+                        <br>
+                        <p>
+                            My role in the project was to design and implement the enemy AI, as well as the level design for 7 of the 15 levels.
+                        </p>
+                        <ul class="work__list">
+                            <li>C++</li>
+                            <li>Unity</li>
+                        </ul>
                     </div>
-                        <div class="work__image-box">
-                            <img class="img-fluid" src="./assets/img/project-1800x600.png" class="work__image" alt="Project 1" />
+                </div>
+            </section>
+            
+                        <br>
+                        <p>
+                            Boop-It is a first-person rhythm platformer where the player speeds through levels by platforming to the beat with their Boop Gun.
+                        </p>  
+                        <br>
+                        <p>
+                            My role in the project was to design and implement the enemy AI, as well as the level design for 7 of the 15 levels.
+                        </p>
+                        <ul class="work__list">
+                            <li>C++</li>
+                            <li>Unity</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+
+                        <!-- <div class="work__image-box">
+                            <img class="img-fluid" src="./assets/img/project-1800x600.png" class="work__image" alt="Project 1" /> -->
                             <!--<iframe width="420" height="315"
                                     src="https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1&mute=1">
                             </iframe>-->
