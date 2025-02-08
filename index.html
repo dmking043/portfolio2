@@ -95,22 +95,44 @@
             width: 75%;
         }
 
-        /* Style for the Social Media Icons in Contact section */
-        .social-media a{
-            margin: 10px;
-            font-size: 24px;
-        }
-        
-        .social-media a {
-            margin: 10px;
-            font-size: 32px; /* Adjust size */
-            color: 000; /* Icon color */
-            text-decoration: none;
-        }
+/* Centering Contact Section */
+#contact {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f9f9f9; /* Light background for contrast */
+}
 
-        .social-media a:hover {
-            color: #0073e6; /* Hover color */
-        }
+.contact-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Centering Social Media Icons */
+.social-media {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.social-media a {
+    font-size: 32px;
+    color: #000; /* Default color */
+    transition: color 0.3s ease-in-out;
+}
+
+.social-media a:hover {
+    color: #0073e6; /* Highlight effect on hover */
+}
+
+/* Centering Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333; /* Dark background */
+    color: white;
+}
+
     </style>  
             
             
@@ -363,26 +385,29 @@
     <!-- CONTACT -->
 
     <section id="contact">
-        <h2>Contact</h2>
-        <p><strong>Please feel free to send me an Email:</strong> <a href="mailto:edking143@gmail.com">edking143@gmail.com</a></p>
-        <div class="social-media">
-
-            <a href="https://www.linkedin.com/in/evanking143/" target="_blank">
-                <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="https://github.com/kingdomempire" target="_blank">
-                <i class="fab fa-github"></i>
-            </a>
+        <div class="contact-container">
+            <h2>Contact</h2>
+            <p><strong>Please feel free to send me an Email:</strong> 
+                <a href="mailto:edking143@gmail.com">edking143@gmail.com</a>
+            </p>
+            
+            <div class="social-media">
+                <a href="https://www.linkedin.com/in/evanking143/" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/kingdomempire" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
         </div>
-
     </section>
+    
    
     <!-- End of CONTACT -->
 
     <footer>
         <p>&copy; 2025 Evan D. King. All rights reserved.</p>
-    </footer>
-        
+    </footer>   
         
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
