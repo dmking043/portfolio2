@@ -141,31 +141,50 @@
                         </div>
             
                         <script>
+                            let player; // Store YouTube player instance
+            
                             function loadVideo() {
                                 const videoContainer = document.getElementById("videoWrapper");
+            
+                                // Replace thumbnail with iframe
                                 videoContainer.innerHTML = `<div id="player"></div>`;
             
-                                // Load YouTube IFrame API
-                                let tag = document.createElement("script");
-                                tag.src = "https://www.youtube.com/iframe_api";
-                                document.body.appendChild(tag);
+                                // Load YouTube IFrame API if not already loaded
+                                if (!window.YT) {
+                                    let tag = document.createElement("script");
+                                    tag.src = "https://www.youtube.com/iframe_api";
+                                    document.body.appendChild(tag);
+                                }
             
+                                // Wait for API to be ready
                                 window.onYouTubeIframeAPIReady = function() {
-                                    new YT.Player("player", {
+                                    player = new YT.Player("player", {
                                         height: "315",
                                         width: "560",
                                         videoId: "C40TUgm7eJA",  // Replace with your video ID
-                                        playerVars: {
-                                            autoplay: 1,
-                                            rel: 0
-                                        },
+                                        playerVars: { autoplay: 1, rel: 0 },
                                         events: {
                                             "onReady": function(event) {
-                                                event.target.unMute(); // Unmute and play the video
-                                            }
+                                                event.target.unMute(); // Unmute and play
+                                            },
+                                            "onStateChange": onPlayerStateChange
                                         }
                                     });
                                 };
+                            }
+            
+                            function onPlayerStateChange(event) {
+                                if (event.data === YT.PlayerState.ENDED) {
+                                    resetToThumbnail();
+                                }
+                            }
+            
+                            function resetToThumbnail() {
+                                const videoContainer = document.getElementById("videoWrapper");
+                                videoContainer.innerHTML = `
+                                    <img id="videoThumbnail" src="assets/img/project-1.png" alt="Click to play">
+                                    <div class="play-button">&#9658;</div>`;
+                                videoContainer.onclick = loadVideo; // Reattach click event
                             }
                         </script>
             
